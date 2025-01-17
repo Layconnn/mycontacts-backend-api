@@ -2,6 +2,9 @@ const express = require("express");
 const errorHandler = require("./middleware/errorHandler");
 const connectDb = require("./config/dbConnection");
 const dotenv = require("dotenv").config();
+const cors = require('cors');
+
+dotenv.config();
 
 connectDb();
 
@@ -18,6 +21,8 @@ const port = process.env.PORT || 5000;
 // app.get("/no-error", (req, res) => {
 //     res.status(200).json({ message: "No error, all good!😊" });
 // });
+
+app.use(cors());
 
 app.use(express.json())
 app.use("/api/contacts", require("./routes/contactRoutes"));
